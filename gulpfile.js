@@ -5,38 +5,32 @@ var gulp = require("gulp"),             // Task runner.
 
 /**
  * Minify JS task.
+ * 
  * Minifies the password-strength.js file to password-strength.min.js.
  */
 gulp.task("minify-js", function () {
     gulp.src("./password-strength.js")
-
-        // Minify file.
         .pipe(uglify())
-
-        // Rename file.
         .pipe(rename("password-strength.min.js"))
-
-        // Save file.
         .pipe(gulp.dest("./dist/"));
 });
 
 /**
  * Concat JS task.
- * Minifies the password-strength.js file to password-strength.min.js.
+ * 
+ * Concatenates dist-header.js onto password-strength.min.js to form the 
+ * commented distributable.
  */
 gulp.task("concat-js", function () {
     gulp.src(["./dist-header.js", "./dist/password-strength.min.js"])
-
-        // Minify file.
         .pipe(concat("password-strength.min.js"))
-
-        // Save file.
         .pipe(gulp.dest("./dist/"));
 });
 
 /**
  * Default task.
- * Watches for changes to password-strength.js and runs the minify-js task.
+ * 
+ * Watches for changes to certain files and runs the necessary tasks.
  */
 gulp.task("default", function () {
     gulp.watch(["./password-strength.js", "./dist-header.js"], ["minify-js", "concat-js"])
