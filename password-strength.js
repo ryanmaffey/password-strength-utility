@@ -1,11 +1,12 @@
 /**
  * Password Strength Utility
  * -------------------------
- * Version: 1.0
+ * Version: 1.0.1
  * Author:  Ryan Maffey
  * URL:     https://github.com/ryanmaffey/password-strength-utility
  * Created: 03/05/2017
  */
+
 
 /**
  * -----------------------------------------------------------------------------
@@ -100,11 +101,7 @@ function PasswordStrength (selector) {
          *    and exit early.
          * 
          * 3. Of the matching elements, filter them down to only thise with 
-         *    [data-pws] attributes. 
-         * 
-         *    Note: This uses a technique from David Walsh to allow us to 
-         *    essentially cast a NodeList to an Array in order to allow us to 
-         *    use the .filter() method. https://davidwalsh.name/nodelist-array
+         *    [data-pws] attributes.
          * 
          * 4. If there are no [data-pws] elements found, warn the user and exit 
          *    early.
@@ -405,8 +402,8 @@ PWS.setup = function (opts) {
     PWS.rules = opts.rules;
     
     // [3]
-    document
-        .querySelectorAll("[data-pws]")
+    [].slice
+        .call(document.querySelectorAll("[data-pws]"))
         .forEach(function (_PWSElem) {
             PWS._PWSArray.push(new _PWS(_PWSElem));
         });

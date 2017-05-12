@@ -1,6 +1,6 @@
 Password Strength Utility
 =========================
-A dependency-free password strength utility. 
+A dependency-free password strength utility.
 
 5 KB distributable.
 
@@ -22,6 +22,8 @@ A dependency-free password strength utility.
     - [Events](#events)
 - [Using zxcvbn.js (Optional)](#using-zxcvbnjs-optional)
 - [Browser Support](#browser-support)
+- [Version History](#version-history)
+- [To Do](#to-do)
 
 <br>
 
@@ -252,3 +254,25 @@ According to [jscc.info](http://jscc.info/).
 - Opera Mini all
 - Safari 3.1+
 - UC Browser for Android 11+
+
+<br>
+
+<a id="version-history"></a>
+
+## Version History
+
+### 1.0.1
+
+**Fix:** The utility wasn't working in IE because NodeList.forEach() is not supported. The NodeList has been cast to an Array to fix this issue.
+
+### 1.0.0
+
+First release!
+
+<br>
+
+<a id="to-do"></a>
+
+## To Do
+
+- Enable the user to get a single regex with which to validate their password.
