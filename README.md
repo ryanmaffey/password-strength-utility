@@ -239,5 +239,3 @@ First release!
 <a id="to-do"></a>
 
 ## To Do
-
-- Enable the user to get a single regex with which to validate their password.
