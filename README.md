@@ -152,6 +152,7 @@ From there you can access all of the data you'd need, including:
 | `label`    | The password strength label.                                         | `String`           |
 | `isValid`  | The validity of the password (i.e. does it pass all of the rules?).  | `Boolean`          |
 | `rules`    | All of the rules and whether they are being passed/failed.           | `Object`           |
+| `regex`    | A regular expression which validates the password.                   | `String`           |
 
 <a id="events"></a>
 
@@ -216,6 +217,10 @@ According to [jscc.info](http://jscc.info/).
 <a id="version-history"></a>
 
 ## Version History
+
+### 1.1.0
+
+**New:** Now access a regular expression which can be used to validate your password (e.g. use it for the value of the `pattern` attribute on password inputs).
 
 ### 1.0.2
 

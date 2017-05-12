@@ -1,14 +1,4 @@
 /**
- * Password Strength Utility
- * -------------------------
- * Version: 1.0.1
- * Author:  Ryan Maffey
- * URL:     https://github.com/ryanmaffey/password-strength-utility
- * Created: 03/05/2017
- */
-
-
-/**
  * -----------------------------------------------------------------------------
  *                              PasswordStrength
  * -----------------------------------------------------------------------------
@@ -93,6 +83,7 @@ function PasswordStrength (selector) {
      *    created).
      */
     function createAndSelect_PWS () {
+        var not_PWSMsg = "PasswordStrength: This is not a [data-pws] element.";
 
         /**
          * 1. Get all of the elements matching the selector.
@@ -111,9 +102,7 @@ function PasswordStrength (selector) {
          */
         function create_PWSFromString () {
             // [1]
-            var matchingElems = document.querySelectorAll(selector),
-                not_PWSMsg = "PasswordStrength: This is not a [data-pws] " +
-                    "element.";
+            var matchingElems = document.querySelectorAll(selector);
 
             // [2]
             if (matchingElems.length) {
@@ -175,6 +164,12 @@ function PasswordStrength (selector) {
 
 // Using PWS as an alias for PasswordStrength.
 var PWS = PasswordStrength;
+
+
+/**
+ * TOOD
+ */
+PWS.availableRules = ["length", "upper", "lower", "number", "special"],
 
 
 /**
@@ -351,12 +346,11 @@ PWS.setup = function (opts) {
      * 6. If all is well, return true (valid).
      */
     function validateRulesOpts () {
-        var availableRules = ["length", "upper", "lower", "number", "special"],
-            ruleCount = 0,
+        var ruleCount = 0,
             invalidRuleMsg;
 
         for (var key in opts.rules) {
-            if (availableRules.indexOf(key) > -1) {
+            if (PWS.availableRules.indexOf(key) > -1) {
                 // [1]
                 ruleCount++;
 
@@ -462,6 +456,7 @@ function _PWS (elem) {
     _pws.score   = 0;              // [4]
     _pws.label   = PWS.labels[0];  // [5]
     _pws.isValid = false;          // [6]
+    _pws.regex   = null;           // [7]
 
     _pws.init();
 };
@@ -479,10 +474,7 @@ _PWS.prototype.addRules = function () {
     if (PWS.rules.length) {
         _pws.rules.push({
             name: "length",
-            isPassed: function () {
-                var regex = "^.{" + PWS.rules.length + ",}$";
-                return new RegExp(regex, "g").test(_pws.password.value);
-            }
+            regex: "^.{" + PWS.rules.length + ",}$",
         });
     }
 
@@ -490,10 +482,7 @@ _PWS.prototype.addRules = function () {
     if (PWS.rules.number) {
         _pws.rules.push({
             name: "number",
-            isPassed: function () {
-                var regex = "(.*[0-9]){" + PWS.rules.number + "}";
-                return new RegExp(regex, "g").test(_pws.password.value);
-            }
+            regex: "(.*[0-9]){" + PWS.rules.number + "}"
         });
     }
 
@@ -501,10 +490,7 @@ _PWS.prototype.addRules = function () {
     if (PWS.rules.upper) {
         _pws.rules.push({
             name: "upper",
-            isPassed: function () {
-                var regex = "(.*[A-Z]){" + PWS.rules.upper + "}";
-                return new RegExp(regex, "g").test(_pws.password.value);
-            }
+            regex: "(.*[A-Z]){" + PWS.rules.upper + "}"
         });
     }
 
@@ -512,10 +498,7 @@ _PWS.prototype.addRules = function () {
     if (PWS.rules.lower) {
         _pws.rules.push({
             name: "lower",
-            isPassed: function () {
-                var regex = "(.*[a-z]){" + PWS.rules.lower + "}";
-                return new RegExp(regex, "g").test(_pws.password.value);
-            }
+            regex: "(.*[a-z]){" + PWS.rules.lower + "}"
         });
     }
 
@@ -523,12 +506,16 @@ _PWS.prototype.addRules = function () {
     if (PWS.rules.special) {
         _pws.rules.push({
             name: "special",
-            isPassed: function () {
-                var regex = "(.*[\\W]){" + PWS.rules.special + "}";
-                return new RegExp(regex, "g").test(_pws.password.value);
-            }
+            regex: "(.*[\\W]){" + PWS.rules.special + "}"
         });
     }
+
+    _pws.rules.map(function (rule) {
+        rule.isPassed = function () {
+            return new RegExp(this.regex, "g").test(_pws.password.value);
+        }
+        return rule;
+    });
 
     return _pws;
 };
@@ -634,9 +621,7 @@ _PWS.prototype.update = function () {
      */
     function checkValidity () {
         // [1]
-        var isValid = _pws.rules.filter(function (rule) {
-            return rule.isPassing;
-        }).length == _pws.rules.length;
+        var isValid = new RegExp(_pws.regex, "g").test(_pws.password.value);
 
         if (isValid != _pws.isValid) {
             // [2]
@@ -679,6 +664,48 @@ _PWS.prototype.bindEvents = function () {
 
 
 /**
+ * Generate a regular expression which validates the whole password.
+ * 
+ * 1. Concatenate the regex strings.
+ * 
+ * 2. If the rule is for the minimum length, store the regex for that rule for 
+ *    later because it needs to go on the end of the concatenated regex string.
+ * 
+ * 3. If there is a minimum length rule in place, add it to the end of the regex
+ *    string.
+ * 
+ * 4. Add the concatenated regex string to the _PWS instance.
+ * 
+ * @return {_PWS} This _PWS instance. Allows for method chaining.
+ */
+_PWS.prototype.generateRegex = function () {
+    var _pws = this,
+        regex = "",
+        lengthRegex;
+
+    _pws.rules.map(function (rule) {
+        if (rule.name != "length") {
+            // [1]
+            regex += "(?=" + rule.regex + ")";
+        } else {
+            // [2]
+            lengthRegex = rule.regex;
+        }
+    });
+
+    // [3]
+    if (lengthRegex) {
+        regex += lengthRegex.replace("^", "").replace("$", "");
+    }
+
+    // [4]
+    _pws.regex = regex;
+
+    return _pws;
+};
+
+
+/**
  * Initialise this _PWS instance.
  * 
  * @return {_PWS} This _PWS instance. Allows for method chaining.
@@ -686,6 +713,7 @@ _PWS.prototype.bindEvents = function () {
 _PWS.prototype.init = function () {
     return this
         .addRules()
+        .generateRegex()
         .bindEvents()
         .update();
 };
