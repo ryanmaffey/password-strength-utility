@@ -65,9 +65,9 @@ This utility does not force the use of any specific markup (besides a single dat
 
 Install using npm:
 
-`npm install password-strength-utility`
+`npm install password-strength-utility` [(link to npm package)](https://www.npmjs.com/package/password-strength-utility)
 
-[npm package](https://www.npmjs.com/package/password-strength-utility)
+<br>
 
 Distributable file location:
 
