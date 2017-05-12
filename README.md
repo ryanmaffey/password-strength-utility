@@ -239,3 +239,5 @@ First release!
 <a id="to-do"></a>
 
 ## To Do
+
+- Include unit tests
