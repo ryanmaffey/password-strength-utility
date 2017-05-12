@@ -1,12 +1,8 @@
 Password Strength Utility
 =========================
-A dependency-free password strength utility.
-
-5 KB distributable.
+A lightweight, dependency-free password strength utility.
 
 [DEMO!](https://codepen.io/ryanmaffey/pen/OmzyWE)
-
-<br>
 
 ## Contents
 
@@ -25,8 +21,6 @@ A dependency-free password strength utility.
 - [Version History](#version-history)
 - [To Do](#to-do)
 
-<br>
-
 <a id="rationale"></a>
 
 ## Rationale
@@ -35,15 +29,9 @@ This utility was created to enable users to:
 1. Easily get password strength and validity information.
 2. Do something (anything) using the provided information.
 
-<br>
-
 This utility is designed to be completely reusable across projects requiring the minimal amount of changes to the existing project code. 
 
-<br>
-
 This utility does not force the use of any specific markup (besides a single data attribute) or styles, making it easy to create bespoke components on different projects.
-
-<br>
 
 <a id="features"></a>
 
@@ -54,8 +42,6 @@ This utility does not force the use of any specific markup (besides a single dat
 - Easily access the password's value, validity, strength score, strength label and rule information.
 - Listen for custom events whenever the password's value, validity, strength score, strength label and rule information. changes.
 - Lots of validation and error handling in case you mess anything up!
-
-<br>
 
 <a id="usage"></a>
 
@@ -69,13 +55,9 @@ Install using npm:
 
 `npm install password-strength-utility` [(link to npm package)](https://www.npmjs.com/package/password-strength-utility)
 
-<br>
-
 Distributable file location:
 
 `/node_modules/password-strength-utility/dist/password-strength.min.js`
-
-<br>
 
 <a id="markup"></a>
 
@@ -87,8 +69,6 @@ Example markup:
 ```
 <input type="password" id="password-input" data-pws />
 ```
-
-<br>
 
 <a id="setup"></a>
 
@@ -119,8 +99,6 @@ PasswordStrength.setup({
 });
 ```
 
-<br>
-
 <a id="adding-labels-optional"></a>
 
 #### Adding Labels (Optional)
@@ -132,8 +110,6 @@ The `labels` property must contain an `Object` with properties from 0-4.
 The values of 0-4 correspond with the password strength score. The value of `0` is the label shown when the password strength score is 0, etc.
 
 The value of each property on the `labels` object must be of type `String`.
-
-<br>
 
 <a id="adding-rules-required"></a>
 
@@ -149,15 +125,11 @@ The `rules` property must contain an `Object` with one or more of the following 
 | `lower`   | Minimum lower case characters.  | `Number (Integer)` |
 | `special` | Minimum special characters.     | `Number (Integer)` |
 
-<br>
-
 <a id="get-data"></a>
 
 ### Getting Password Strength Data
 
 You can select a the password strength object for a password input in a similar way to using a jQuery selector.
-
-<br>
 
 Using an ID selector:
 
@@ -171,8 +143,6 @@ Using an HTML element:
 PasswordStrength(passwordInputElement);
 ```
 
-<br>
-
 From there you can access all of the data you'd need, including:
 
 | Property   | Description                                                          | Type               |
@@ -182,8 +152,6 @@ From there you can access all of the data you'd need, including:
 | `label`    | The password strength label.                                         | `String`           |
 | `isValid`  | The validity of the password (i.e. does it pass all of the rules?).  | `Boolean`          |
 | `rules`    | All of the rules and whether they are being passed/failed.           | `Object`           |
-
-<br>
 
 <a id="events"></a>
 
@@ -216,27 +184,17 @@ $(passwordInputElement).on("passwordStrengthChange", function (event) {
 | `pwsRuleMatchChange` | When at least one of the strength rules' pass/fail status changes. | `Object` |
 | `pwsValidityChange`  | When the password validity status changes.                         | `Object` |
 
-<br>
-
 <a id="using-zxcvbnjs-optional"></a>
 
 ## Using zxcvbn.js (Optional)
 
 This is a great password strength checking tool. [Check it out on GitHub](https://github.com/dropbox/zxcvbn).
 
-<br>
-
 Fun fact: the tool was names after a crappy password! (zxcvbn is the qwerty equivalent when using the bottom row of alpha chars on your keyboard).
-
-<br>
 
 One thing to bear in mind is that it's nearly 1 MB minified (lots of dictionary information, etc.) so it's a tad heavy.
 
-<br>
-
 This utility will work with or without zxcvbn.js, so if you want to use it all you have to do is drop it into the project. Otherwise it will base the strength purely on the number of rules passed (but a valid password does not necessarily mean a strong password - which is why using zxcvbn.js is better).
-
-<br>
 
 <a id="browser-support"></a>
 
@@ -255,11 +213,14 @@ According to [jscc.info](http://jscc.info/).
 - Safari 3.1+
 - UC Browser for Android 11+
 
-<br>
-
 <a id="version-history"></a>
 
 ## Version History
+
+### 1.0.2
+
+**Update:** Improved the gulp task for processing the JS to form the distributable file.
+**Update:** Added link to npm module into distributable file comment.
 
 ### 1.0.1
 
@@ -268,8 +229,6 @@ According to [jscc.info](http://jscc.info/).
 ### 1.0.0
 
 First release!
-
-<br>
 
 <a id="to-do"></a>
 

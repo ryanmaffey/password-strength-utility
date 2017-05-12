@@ -1,37 +1,41 @@
-var gulp = require("gulp"),             // Task runner.
-    uglify = require("gulp-uglify"),    // For JS minification.
-    rename = require("gulp-rename"),    // For renaming files.
-    concat = require("gulp-concat");    // For concatenating files.
+var gulp   = require("gulp"),         // Task runner.
+    uglify = require("gulp-uglify"),  // For JS minification.
+    concat = require("gulp-concat"),  // For concatenating files.
+    merge  = require('merge-stream'); // For merging multiple streams.
+
 
 /**
- * Minify JS task.
- * 
- * Minifies the password-strength.js file to password-strength.min.js.
+ * JS task.
  */
-gulp.task("minify-js", function () {
-    gulp.src("./password-strength.js")
-        .pipe(uglify())
-        .pipe(rename("password-strength.min.js"))
-        .pipe(gulp.dest("./dist/"));
+gulp.task("js", function () {
+    var distHeader = 
+        gulp.src("./dist-header.js");
+
+    /**
+     * Minify password-strength.js;
+     */
+    var passwordStrengthsMinified =  
+        gulp.src("./password-strength.js")
+            .pipe(uglify());
+
+    /**
+     * Concatenates dist-header.js on top of the minified (uglified) 
+     * password-strength.js to form the commented distributable.
+     */
+    var mergedStream = merge(distHeader, passwordStrengthsMinified)
+        .pipe(concat('password-strength.min.js'))
+        .pipe(gulp.dest('./dist'));
+
+    return mergedStream;
 });
 
-/**
- * Concat JS task.
- * 
- * Concatenates dist-header.js onto password-strength.min.js to form the 
- * commented distributable.
- */
-gulp.task("concat-js", function () {
-    gulp.src(["./dist-header.js", "./dist/password-strength.min.js"])
-        .pipe(concat("password-strength.min.js"))
-        .pipe(gulp.dest("./dist/"));
-});
 
 /**
  * Default task.
  * 
- * Watches for changes to certain files and runs the necessary tasks.
+ * Runs the "js" task on startup.
+ * Watches for changes to .js files and runs the "js" task.
  */
-gulp.task("default", function () {
-    gulp.watch(["./password-strength.js", "./dist-header.js"], ["minify-js", "concat-js"])
+gulp.task("default", ["js"], function () {
+    gulp.watch(["**/*.js"], ["js"]);
 });

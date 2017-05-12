@@ -1,8 +1,8 @@
 /**
  * Password Strength Utility
  * -------------------------
- * Version: 1.0
- * Author:  Ryan Maffey
- * URL:     https://github.com/ryanmaffey/password-strength-utility
- * Created: 03/05/2017
+ * Version:   1.0.2
+ * Author:    Ryan Maffey
+ * GitHub:    https://github.com/ryanmaffey/password-strength-utility
+ * npm:       https://www.npmjs.com/package/password-strength-utility
  */
