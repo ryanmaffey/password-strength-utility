@@ -1,7 +1,7 @@
 {
   "name": "password-strength-utility",
   "version": "1.0.2",
-  "description": "A dependency-free password strength utility.",
+  "description": "A lightweight, dependency-free password strength utility.",
   "main": "password-strength.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

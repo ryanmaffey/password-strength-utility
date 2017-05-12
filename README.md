@@ -220,6 +220,7 @@ According to [jscc.info](http://jscc.info/).
 ### 1.0.2
 
 **Update:** Improved the gulp task for processing the JS to form the distributable file.
+
 **Update:** Added link to npm module into distributable file comment.
 
 ### 1.0.1
