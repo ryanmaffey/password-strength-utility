@@ -1,13 +1,22 @@
 {
-  "name": "password-strength",
+  "name": "password-strength-utility",
   "version": "1.0.0",
-  "description": "Password strength module",
+  "description": "A dependency-free password strength utility.",
   "main": "password-strength.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ryanmaffey/password-strength-utility.git"
+  },
+  "keywords": ["password", "strength", "password-strength", "zxcvbn"],
   "author": "Ryan Maffey",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ryanmaffey/password-strength-utility/issues"
+  },
+  "homepage": "https://github.com/ryanmaffey/password-strength-utility",
   "devDependencies": {
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.1",
