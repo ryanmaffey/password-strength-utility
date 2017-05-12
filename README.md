@@ -13,6 +13,7 @@ A dependency-free password strength utility.
 - [Rationale](#rationale)
 - [Features](#features)
 - [Usage](#usage)
+    - [Install and Reference](#install-and-reference)
     - [Markup](#markup)
     - [Setup](#setup)
         - [Adding Labels (Optional)](#adding-labels-optional)
@@ -57,6 +58,22 @@ This utility does not force the use of any specific markup (besides a single dat
 <a id="usage"></a>
 
 ## Usage
+
+<a id="install-and-reference"></a>
+
+### Install and Reference
+
+Install using npm:
+
+`npm install password-strength-utility`
+
+[npm package](https://www.npmjs.com/package/password-strength-utility)
+
+Distributable file location:
+
+`/node_modules/password-strength-utility/dist/password-strength.min.js`
+
+<br>
 
 <a id="markup"></a>
 
