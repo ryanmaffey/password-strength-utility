@@ -1,0 +1,79 @@
+<html>
+    <head>
+    </head>
+    <body>
+        <input type="password" id="password" data-pws />
+        <p>Strength: <span id="strengthValue"></span></p>
+        <p>Label: <span id="strengthLabel"></span></p><p>Valid: <span id="strengthValidity"></span></p>
+        <br>
+        <p><strong>Rules passed:</strong></p>
+        <p>Upper: <span id="upper"></span></p>
+        <p>Lower: <span id="lower"></span></p>
+        <p>Length: <span id="length"></span></p>
+        <p>Number: <span id="number"></span></p>
+        <p>Special: <span id="special"></span></p>
+
+        <!-- Scripts -->
+
+        <script src="jquery-3.2.1.min.js"></script>
+        <script src="jquery-animate-colour.js"></script>
+        <script src="zxcvbn.min.js"></script>
+        <script src="../password-strength.js"></script>
+        <script>
+            PasswordStrength.setup({
+                rules: {
+                    upper: 1,
+                    lower: 1,
+                    length: 8,
+                    number: 2,
+                    special: 1
+                },
+                labels: {
+                    0: "Very Weak",
+                    1: "Weak",
+                    2: "Average",
+                    3: "Strong",
+                    4: "Very Strong"
+                }
+            });
+
+            var passwordElem = document.querySelector("#password");
+
+            passwordElem.addEventListener("pwsScoreChange", function (event) {
+                document.querySelector("#strengthValue").innerText = event.data;
+                // Maybe you change the value of a progress bar here!
+            });
+
+            passwordElem.addEventListener("pwsLabelChange", function (event) {
+                document.querySelector("#strengthLabel").innerText = event.data;
+                // Maybe you can do a fancy animation with the label here!
+            });
+
+            passwordElem.addEventListener("pwsRuleMatchChange", function (event) {
+                var rules = event.data;
+                
+                rules.map(function (rule) {
+                    document.querySelector("#" + rule.name).innerText = rule.isPassing;
+                });
+                // Maybe, if you have a checklist of rules to match, you can check/uncheck them as the data changes here!
+            });
+
+            passwordElem.addEventListener("pwsValidityChange", function (event) {
+                document.querySelector("#strengthValidity").innerText = event.data;
+                // Maybe show/hide a validation message here!
+            });
+  
+            var $PWS = PasswordStrength("#password");
+
+            document.querySelector("#strengthValue").innerText = $PWS.score;
+            document.querySelector("#strengthLabel").innerText = $PWS.label;
+            document.querySelector("#strengthValidity").innerText = $PWS.isValid;
+        
+            var rules = $PWS.rules;
+        
+            rules.map(function (rule) {
+                document.querySelector("#" + rule.name).innerText = rule.isPassing;
+            });
+        </script>
+    </body>
+</html>
