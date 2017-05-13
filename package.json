@@ -14,7 +14,8 @@
     "password",
     "strength",
     "password-strength",
-    "zxcvbn"
+    "zxcvbn",
+    "score"
   ],
   "author": "Ryan Maffey",
   "license": "ISC",
@@ -28,8 +29,5 @@
     "gulp-uglify": "^2.1.2",
     "merge-stream": "^1.0.1",
     "nightwatch": "^0.9.15"
-  },
-  "dependencies": {
-    "gulp-delete-file": "^1.0.2"
   }
 }
