@@ -227,9 +227,9 @@ Unit tests can be found in the `tests` directory. The tests use the example in t
 
 ## Version History
 
-### 1.1.2
+### 1.1.2/3
 
-**Update:** Removing unecessary files from the npm package. Now just contains the distributable.
+**Update:** Removing unecessary files from the npm package. Now just contains the distributable .
 
 ### 1.1.1
 
