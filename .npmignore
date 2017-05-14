@@ -1,13 +1,4 @@
-# Directories
-# -----------
-bin/
-examples/
-tests/
-
-
-
-# Files
-# -----
-dist-header.js
-gulpfile.js
-nightwatch.json
+# Ignore everything except the distributable file.
+*
+!./password-strength.js
+!./dist/*.js
