@@ -1,6 +1,6 @@
 {
   "name": "password-strength-utility",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "A lightweight, dependency-free password strength utility.",
   "main": "password-strength.js",
   "scripts": {

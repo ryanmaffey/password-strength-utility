@@ -2,7 +2,7 @@ Password Strength Utility
 =========================
 A lightweight, dependency-free password strength utility.
 
-[DEMO!](https://codepen.io/ryanmaffey/pen/OmzyWE)
+[DEMO!](https://codepen.io/ryanmaffey/pen/OmzyWE) (There is also an demo found in the `example` directory).
 
 ## Contents
 
@@ -18,6 +18,7 @@ A lightweight, dependency-free password strength utility.
     - [Events](#events)
 - [Using zxcvbn.js (Optional)](#using-zxcvbnjs-optional)
 - [Browser Support](#browser-support)
+- [Unit Tests](#unit-tests)
 - [Version History](#version-history)
 - [To Do](#to-do)
 
@@ -214,9 +215,23 @@ According to [jscc.info](http://jscc.info/).
 - Safari 3.1+
 - UC Browser for Android 11+
 
+<a id="unit-tests"></a>
+
+## Unit Tests
+
+As of version 1.1.1, this project now includes unit tests using [Nightwatch.js](http://nightwatchjs.org/).
+
+Unit tests can be found in the `tests` directory. The tests use the example in the `example` directory.
+
 <a id="version-history"></a>
 
 ## Version History
+
+### 1.1.1
+
+**New:** Added unit tests using [Nightwatch.js](http://nightwatchjs.org/).
+
+**Fix:** Underscores now count as a special character.
 
 ### 1.1.0
 
@@ -240,9 +255,4 @@ First release!
 
 ## To Do
 
-- Include unit tests
-
-## Next Release
-
-- Unit tests
-- Allowing _ as a special character
+Nothing at the moment... If you've got a feature request, [raise it as an issue on GitHub](https://github.com/ryanmaffey/password-strength-utility/issues).
