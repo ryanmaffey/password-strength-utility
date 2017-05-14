@@ -506,7 +506,7 @@ _PWS.prototype.addRules = function () {
     if (PWS.rules.special) {
         _pws.rules.push({
             name: "special",
-            regex: "(.*[\\W]){" + PWS.rules.special + "}"
+            regex: "(.*[_\\W]){" + PWS.rules.special + "}"
         });
     }
 

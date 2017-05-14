@@ -241,3 +241,8 @@ First release!
 ## To Do
 
 - Include unit tests
+
+## Next Release
+
+- Unit tests
+- Allowing _ as a special character
