@@ -1,7 +1,7 @@
 module.exports = {
     'Test 1' : function (browser) {
     browser
-        .url('http://localhost:8080/playground')
+        .url('http://localhost:8080/examples')
         .waitForElementVisible('body', 1000)
         .setValue('input[type=password]', 'nightwatch')
         .pause(500)
