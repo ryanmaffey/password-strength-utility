@@ -227,6 +227,11 @@ Unit tests can be found in the `tests` directory. The tests use the example in t
 
 ## Version History
 
+### 1.1.6
+
+**Fix:** Added a polyfill for Element.matches() in IE.
+**Fix:** Added a polyfill for CustomEvents in IE.
+
 ### 1.1.2-5
 
 **Update:** Removing unecessary files from the npm package. Now just contains the distributable .

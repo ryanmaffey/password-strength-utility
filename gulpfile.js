@@ -15,7 +15,7 @@ gulp.task("js", function () {
      * Minify password-strength.js;
      */
     var passwordStrengthsMinified =  
-        gulp.src("./password-strength.js")
+        gulp.src(["./polyfills.js", "./password-strength.js"])
             .pipe(uglify());
 
     /**

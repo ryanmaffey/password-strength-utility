@@ -167,7 +167,7 @@ var PWS = PasswordStrength;
 
 
 /**
- * TOOD
+ * TODO
  */
 PWS.availableRules = ["length", "upper", "lower", "number", "special"],
 
